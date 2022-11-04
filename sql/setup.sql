@@ -9,7 +9,7 @@ CREATE TABLE childhood_movies (
     year INT NOT NULL,
     is_animated BOOLEAN NOT NULL,
     is_anime BOOLEAN NOT NULL
-)
+);
 
 INSERT INTO childhood_movies(title, url, year, is_animated, is_anime)
 VALUES
