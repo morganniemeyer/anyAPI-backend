@@ -39,6 +39,19 @@ describe('movie routes', () => {
     expect(result.body).toEqual(totoro);
   });
 
+  it('/t-movies/:id should return movie detail', async () => {
+    const result = await request(app).get('/t-movies/2');
+    const clueless = {
+      id: '2',
+      title: 'Clueless',
+      url: 'https://upload.wikimedia.org/wikipedia/en/5/5a/Clueless_film_poster.png',
+      year: 1995,
+      isAnimated: false,
+      isAnime: false,
+    };
+    expect(result.body).toEqual(clueless);
+  });
+
   afterAll(() => {
     pool.end();
   });
