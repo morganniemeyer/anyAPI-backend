@@ -4,6 +4,7 @@ const request = require('supertest');
 const app = require('../lib/app');
 
 const { cmovies } = require('../lib/movies-data');
+const { tmovies } = require('../lib/movies2-data');
 
 describe('movie routes', () => {
   beforeEach(() => {
@@ -12,6 +13,14 @@ describe('movie routes', () => {
   it('/c-movies should return a list of childhood movies', async () => {
     const result = await request(app).get('/c-movies');
     const expected = cmovies.map((movie) => {
+      return { title: movie.title, year: movie.year };
+    });
+    expect(result.body).toEqual(expected);
+  });
+
+  it('/t-movies should return a list of teen movies', async () => {
+    const result = await request(app).get('/t-movies');
+    const expected = tmovies.map((movie) => {
       return { title: movie.title, year: movie.year };
     });
     expect(result.body).toEqual(expected);
@@ -29,6 +38,7 @@ describe('movie routes', () => {
     };
     expect(result.body).toEqual(totoro);
   });
+
   afterAll(() => {
     pool.end();
   });
