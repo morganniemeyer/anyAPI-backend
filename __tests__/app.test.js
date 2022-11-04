@@ -16,6 +16,19 @@ describe('movie routes', () => {
     });
     expect(result.body).toEqual(expected);
   });
+
+  it('/c-movies/:id should return movie detail', async () => {
+    const result = await request(app).get('/c-movies/1');
+    const totoro = {
+      id: '1',
+      title: 'My Neighbor Totoro',
+      url: 'https://upload.wikimedia.org/wikipedia/en/0/02/My_Neighbor_Totoro_-_Tonari_no_Totoro_%28Movie_Poster%29.jpg',
+      year: 1988,
+      isAnimated: true,
+      isAnime: true,
+    };
+    expect(result.body).toEqual(totoro);
+  });
   afterAll(() => {
     pool.end();
   });
